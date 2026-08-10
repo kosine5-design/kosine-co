@@ -1,0 +1,55 @@
+/* ============================================================
+   KOSINE.CO DESIGN TOKENS
+   The Cultural Architect visual system
+   ============================================================ */
+
+:root {
+  /* Color */
+  --ink:        #080808;  /* near black, primary field */
+  --ink-soft:   #111110;  /* raised surfaces on black */
+  --ivory:      #F3EFE6;  /* warm ivory, primary text on ink */
+  --ivory-dim:  rgba(243, 239, 230, 0.64);
+  --ivory-faint:rgba(243, 239, 230, 0.38);
+  --gold:       #B79A5B;  /* muted gold, structure + emphasis */
+  --gold-dim:   rgba(183, 154, 91, 0.4);
+  --blue:       #6DA9D2;  /* butterfly blue, White Butterfly only */
+  --oxblood:    #551E24;  /* deep accent, used rarely */
+  --line:       rgba(243, 239, 230, 0.14);
+
+  /* Type */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Fluid type scale */
+  --text-xs:   clamp(0.6875rem, 0.65rem + 0.2vw, 0.8125rem);
+  --text-sm:   clamp(0.8125rem, 0.77rem + 0.22vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.94rem + 0.3vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  --text-xl:   clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --text-2xl:  clamp(2rem, 1.4rem + 3vw, 4rem);
+  --text-hero: clamp(3.25rem, 1.8rem + 9vw, 9.5rem);
+  --text-monument: clamp(1.75rem, 1.1rem + 3.2vw, 4.25rem);
+
+  /* Tracking */
+  --track-caps: 0.22em;
+  --track-wide: 0.32em;
+
+  /* Space */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: clamp(4rem, 3rem + 6vw, 9rem);   /* section rhythm */
+  --gutter:  clamp(1.25rem, 4vw, 4rem);
+  --measure: 62ch;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-slow: 900ms;
+  --dur-med:  480ms;
+  --dur-fast: 220ms;
+
+  /* Layout */
+  --max-width: 90rem;
+}
