@@ -64,27 +64,35 @@
   var confirmNote = document.getElementById("inquiry-confirm");
   var inquiryForm = document.getElementById("inquiry-form");
 
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/info@kosine.co";
+  var currentIntent = "project";
+
   var intents = {
     speak: {
       title: "Book Kosine to Speak",
-      context: "Keynotes, masterclasses, and institutional programs. Tell us about the room."
+      context: "Keynotes, masterclasses, and institutional programs. Tell us about the room.",
+      tag: "[SPEAKING]"
     },
     project: {
       title: "Hire Kosine for a Project",
-      context: "Production, songwriting, music supervision, or sonic identity. Tell us about the work."
+      context: "Production, songwriting, music supervision, or sonic identity. Tell us about the work.",
+      tag: "[PROJECT]"
     },
     consult: {
       title: "Request a Consultation",
-      context: "Focused one on one strategy. Tell us what you want to move."
+      context: "Focused one on one strategy. Tell us what you want to move.",
+      tag: "[CONSULT]"
     },
     media: {
       title: "Media & Partnerships",
-      context: "Press, appearances, brand and institutional partnerships. Tell us about the platform."
+      context: "Press, appearances, brand and institutional partnerships. Tell us about the platform.",
+      tag: "[MEDIA]"
     }
   };
 
   function openIntent(key) {
     var intent = intents[key] || intents.project;
+    currentIntent = key in intents ? key : "project";
     dialogTitle.textContent = intent.title;
     dialogContext.textContent = intent.context;
     confirmNote.classList.remove("is-shown");
@@ -122,16 +130,63 @@
 
   inquiryForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    inquiryForm.hidden = true;
-    confirmNote.classList.add("is-shown");
+    var intent = intents[currentIntent];
+    var payload = {
+      _subject: intent.tag + " " + intent.title + ": " + (document.getElementById("inq-name").value || "New inquiry"),
+      pathway: intent.title,
+      name: document.getElementById("inq-name").value,
+      organization: document.getElementById("inq-org").value,
+      email: document.getElementById("inq-email").value,
+      timeline: document.getElementById("inq-timeline").value,
+      details: document.getElementById("inq-detail").value,
+      _template: "table"
+    };
+    var submitBtn = inquiryForm.querySelector(".btn--solid");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); }).then(function () {
+      inquiryForm.hidden = true;
+      confirmNote.innerHTML = "<strong>Received.</strong> Your inquiry is in. Expect a response within two business days.";
+      confirmNote.classList.add("is-shown");
+      inquiryForm.reset();
+    }).catch(function () {
+      confirmNote.innerHTML = "<strong>Something interrupted the send.</strong> Email us directly: info@kosine.co";
+      confirmNote.classList.add("is-shown");
+    }).finally(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Inquiry";
+    });
   });
 
-  /* 5. Mailing list prototype confirmation */
+  /* 5. Mailing list: routes to info@kosine.co tagged [HOUSE].
+     Swap to the Beehiiv embed when the embed code is pulled from the dashboard. */
   var houseForm = document.getElementById("house-form");
   var houseNote = document.getElementById("house-note");
   houseForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    houseNote.textContent = "Prototype note: in production this connects to the existing Beehiiv publication.";
+    var payload = {
+      _subject: "[HOUSE] New member: " + document.getElementById("house-name").value,
+      firstName: document.getElementById("house-name").value,
+      email: document.getElementById("house-email").value,
+      list: "Enter the House mailing list",
+      _template: "table"
+    };
+    var btn = houseForm.querySelector(".btn");
+    btn.disabled = true;
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); }).then(function () {
+      houseNote.textContent = "You are in the House. Watch your inbox.";
+      houseForm.reset();
+    }).catch(function () {
+      houseNote.textContent = "Something interrupted the send. Email info@kosine.co and we will add you.";
+    }).finally(function () { btn.disabled = false; });
   });
 
   /* Footer year */
