@@ -38,6 +38,13 @@ p.small{font-size:15px;color:#bdb8ad}
 .amounts a{display:block;text-align:center;padding:16px 8px;background:var(--dark);border:1px solid var(--gold);color:#fff;text-decoration:none;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:15px;letter-spacing:1px;min-height:48px}
 .amounts a.custom{grid-column:1 / -1;border-style:dashed}
 @media(min-width:520px){.amounts a.custom{grid-column:auto}}
+.pay2{display:grid;gap:12px;margin:18px 0 6px}
+.payway{background:var(--dark);border:1px solid var(--gray);padding:16px 20px}
+.payway>b{display:block;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.payway span{font-size:15px;color:#d9d4c8}
+.payway span b{display:block;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.payway.qr{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}
+.payway.qr img{width:120px;height:120px;border:4px solid #F5F1E8}
 .note{background:var(--dark);border:1px solid var(--gray);padding:16px 20px;margin:18px 0}
 .note b{display:block;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .note span{font-size:15px;color:#d9d4c8}
@@ -108,7 +115,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
       <a class="btn" href="mailto:Kosine@kosine.co?subject=Community%20Sponsor%2C%20The%20%2420%20Dolla%20Holla%2C%20Nov%205&body=Company%20or%20name%3A%0AContact%3A%0APhone%3A%0AHow%20many%20guests%20you%20expect%3A%0AAnything%20I%20should%20know%3A%0A">Request this package</a>
     </div>
   </div>
-  <div class="note"><b>How payment works</b><span>Send the request, I reply myself, and once your package is confirmed in writing the Office sends you a secure card link (Stripe) or the Zelle or Cash App details for Internz University LLC. No card details are ever collected on this site.</span></div>
+  <div class="note"><b>How payment works</b><span>Send the request, I reply myself, and once your package is confirmed in writing the Office sends you a secure card link (Stripe), or you can pay by Zelle to kosine5@gmail.com or Cash App to $gourmetratchet with your company name in the memo. No card details are ever collected on this site.</span></div>
   <!-- Sponsor card links exist in Stripe as INACTIVE drafts (test mode, see kosine-os projects/soul-train-awards-2026/after-party/sponsorship/05_STRIPE-AND-ZELLE_payment-setup.md). They are issued by the Office per sponsor after written confirmation, not published here. -->
 
   <h2>Support free music education, any amount</h2>
@@ -121,7 +128,11 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
     <a href="https://buy.stripe.com/test_9B6aEXdfS83TaFleHDfAc04" rel="noopener">$500</a>
     <a class="custom" href="https://buy.stripe.com/test_aFa14n3Fiesh9BhczvfAc05" rel="noopener">Your amount</a>
   </div>
-  <p class="small">Prefer Zelle or Cash App? <a href="mailto:info@kosine.co?subject=Education%20support%2C%20Zelle%20or%20Cash%20App&body=Name%3A%0AAmount%3A%0A" style="color:var(--gold);display:inline-block;padding:10px 0">Email the Office</a> and the details for Internz University LLC come back within one business day.</p>
+  <div class="pay2">
+    <div class="payway"><b>Zelle</b><span>Send to <strong>kosine5@gmail.com</strong> (Internz University LLC). Put "DOLLA HOLLA class" in the memo.</span></div>
+    <div class="payway qr"><img src="/assets/cashapp-qr-gourmetratchet.png" width="396" height="396" alt="Cash App QR code for $gourmetratchet" loading="lazy"><span><b>Cash App</b>Scan, or send to <a href="https://cash.app/$gourmetratchet" rel="noopener" style="color:var(--gold)">$gourmetratchet</a>. Put "DOLLA HOLLA class" in the note.</span></div>
+  </div>
+  <p class="small">Questions about any of this: <a href="mailto:info@kosine.co?subject=Education%20support%2C%20Zelle%20or%20Cash%20App&body=Name%3A%0AAmount%3A%0A" style="color:var(--gold);display:inline-block;padding:10px 0">email the Office</a>.</p>
 
   <h2>Sections, tables, and questions</h2>
   <div class="note"><b>Sponsorship</b><span>Kosine@kosine.co. I answer these myself.</span></div>
