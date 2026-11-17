@@ -31,6 +31,15 @@ footer a{color:#bbb;text-decoration:none;margin-right:18px}
   plausible.init()
 </script>
 <!-- plausible:end -->
+<script>
+/* Count inquiries and buy clicks as named events (no cookies, no personal data). */
+document.addEventListener("click",function(e){
+  var a=e.target.closest&&e.target.closest("a[href]");if(!a||!window.plausible)return;
+  var h=a.getAttribute("href")||"",label=(a.closest(".dish")&&a.closest(".dish").querySelector("h3")||{}).textContent||a.textContent.trim().slice(0,40);
+  if(/^mailto:/.test(h))plausible("Inquiry",{props:{item:label}});
+  else if(/(buy|book)\.stripe\.com/.test(h))plausible("Buy Click",{props:{item:label}});
+});
+</script>
 </head>
 <body>
 <main class="wrap">
