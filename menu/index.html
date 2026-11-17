@@ -240,7 +240,7 @@
     document.querySelectorAll("a[href]").forEach(function(a){
       var h=a.getAttribute("href");
       if(/^https:\/\/(buy|book)\.stripe\.com\//.test(h)||/everyeffinpenny\.com|skool\.com|myshopify\.com|gourmetratchet\.com/.test(h)){
-        var x=new URL(h);keys.forEach(function(k){if(u[k])x.searchParams.set(k,u[k])});a.setAttribute("href",x.toString());
+        var x=new URL(h);keys.forEach(function(k){if(u[k])x.searchParams.set(k,u[k])});if(/stripe\.com/.test(h)&&u.utm_source){x.searchParams.set("client_reference_id",(u.utm_source+"_"+(u.utm_campaign||"none")).replace(/[^A-Za-z0-9_-]/g,"").slice(0,180))}a.setAttribute("href",x.toString());
       }else if(/^mailto:/.test(h)){
         a.setAttribute("href",h+(h.indexOf("?")>-1?"&":"?")+"body="+encodeURIComponent("\n\n(via "+u.utm_source+")"));
       }else if(h.charAt(0)==="/"&&h.indexOf("utm_")<0){
