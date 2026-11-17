@@ -44,5 +44,25 @@ footer a{color:#bbb;text-decoration:none;margin-right:18px}
     <a href="https://www.skool.com/internz-academy">Internz Academy</a>
   </footer>
 </main>
+<script>
+/* Carry the visitor's channel (utm_*) onto pay links and inquiry emails, so a sale or an inquiry can be traced to where it came from. No cookies. */
+(function(){
+  try{
+    var q=new URLSearchParams(location.search),keys=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"],u={},has=false;
+    keys.forEach(function(k){var v=q.get(k)||sessionStorage.getItem(k);if(v){u[k]=v;has=true;sessionStorage.setItem(k,v)}});
+    if(!has)return;
+    document.querySelectorAll("a[href]").forEach(function(a){
+      var h=a.getAttribute("href");
+      if(/^https:\/\/(buy|book)\.stripe\.com\//.test(h)||/everyeffinpenny\.com|skool\.com|myshopify\.com|gourmetratchet\.com/.test(h)){
+        var x=new URL(h);keys.forEach(function(k){if(u[k])x.searchParams.set(k,u[k])});a.setAttribute("href",x.toString());
+      }else if(/^mailto:/.test(h)){
+        a.setAttribute("href",h+(h.indexOf("?")>-1?"&":"?")+"body="+encodeURIComponent("\n\n(via "+u.utm_source+")"));
+      }else if(h.charAt(0)==="/"&&h.indexOf("utm_")<0){
+        a.setAttribute("href",h+(h.indexOf("?")>-1?"&":"?")+keys.filter(function(k){return u[k]}).map(function(k){return k+"="+encodeURIComponent(u[k])}).join("&"));
+      }
+    });
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
