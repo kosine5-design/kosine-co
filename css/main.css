@@ -950,3 +950,11 @@ h1, h2, h3, h4, p, ul, ol, figure { margin: 0; }
   font-size: var(--text-xs);
   letter-spacing: 0.08em;
 }
+
+/* ROSE PEARL feature (Nov 17 2026): the cover's own blue, and the two names */
+.chapter--pearl { background: radial-gradient(60rem 40rem at 78% 20%, rgba(30, 156, 208, 0.16), transparent 60%), var(--ink-soft); }
+.chapter--pearl .eyebrow { color: #4FB6E3; }
+.chapter--pearl .btn--blue { border-color: #4FB6E3; }
+.chapter--pearl .btn--blue:hover { background: #4FB6E3; color: var(--ink); }
+.two-names { margin-top: var(--space-3); padding-left: var(--space-2); border-left: 1px solid var(--gold-dim); display: grid; gap: .4rem; max-width: var(--measure); color: var(--ivory-dim); font-size: var(--text-base); font-weight: 300; }
+.two-names b { color: var(--ivory); font-weight: 600; }
